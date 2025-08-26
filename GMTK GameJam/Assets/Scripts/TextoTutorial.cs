@@ -35,11 +35,19 @@ public class TextoTutorial : MonoBehaviour
                 texto.gameObject.SetActive(false);
             }
         }
+        if (selector.activeSelf)
+        {
+            Time.timeScale = 0f;
+        }
+        else
+        {
+            Time.timeScale = 1f;
+        }
     }
 
     public void abrirSelector()
     {
-        selector.SetActive(true); 
+        selector.SetActive(true);
         EventSystem.current.SetSelectedGameObject(null);
     }
 }
