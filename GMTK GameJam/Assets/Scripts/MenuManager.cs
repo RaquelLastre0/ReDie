@@ -12,36 +12,47 @@ public class MenuManager : MonoBehaviour
     [SerializeField] private GameObject opciones;
     [SerializeField] private GameObject creditos;
 
-    public GameObject imagen, imegensSinLetras, elegirNivel, sliderVolumen;
+    public GameObject imagen, imegensSinLetras, elegirNivel, sliderVolumen, botonSelector, volumenes;
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space)|| Input.GetKeyDown(KeyCode.Return))
-        {
-            Jugar();
-        }
         if (elegirNivel.gameObject.activeSelf)
         {
-            imagen.SetActive(false);
-            imegensSinLetras.SetActive(true);
+            botonSelector.SetActive(false);
             menuPrincipal.SetActive(false);
             sliderVolumen.SetActive(false);
         }
-        else
+        else if(volumenes.gameObject.activeSelf)
         {
-            imagen.SetActive(true);
-            imegensSinLetras.SetActive(false);
+            botonSelector.SetActive(true);
             menuPrincipal.SetActive(true);
             sliderVolumen.SetActive(true);
         }
+        else
+        {
+            botonSelector.SetActive(true);
+            menuPrincipal.SetActive(true);
+            sliderVolumen.SetActive(true);
+        }
+
+        if (volumenes.gameObject.activeSelf)
+        {
+            botonSelector.SetActive(false);
+            menuPrincipal.SetActive(false);
+            sliderVolumen.SetActive(false);
+        }
     }
     //Cargar Juego
-    public void Jugar()
+    public void AbrirSelector()
     {
         elegirNivel.SetActive(true);
-
-        //SceneManager.LoadScene(1);
     }
+
+    public void CerrarSelector()
+    {
+        elegirNivel.SetActive(false);
+    }
+
     //Salir del juego (de la aplicación)
     public void Salir()
     {
@@ -65,5 +76,17 @@ public class MenuManager : MonoBehaviour
         opciones.SetActive(false);
         creditos.SetActive(false);
         menuPrincipal.SetActive(true);
+    }
+    public void Jugar() 
+    { 
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+    }
+    public void elegirVolumen()
+    {
+        volumenes.SetActive(true);
+    }
+    public void cerrarVolumen()
+    {
+        volumenes.SetActive(false);
     }
 }
