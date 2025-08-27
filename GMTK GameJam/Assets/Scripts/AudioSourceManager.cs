@@ -28,8 +28,13 @@ public class MusicManager : MonoBehaviour
     public void Update()
     {
         if (SceneManager.GetActiveScene().buildIndex == 0)
-            audioSource.volume = 0f;
-        else
-            audioSource.volume = FindObjectOfType<NivelesCompletados>().volumenMusica;
+        {
+            //audioSource.volume = 0f; 
+            Destroy(gameObject);
+        }
+        else 
+        {
+            audioSource.volume = FindObjectOfType<NivelesCompletados>().volumenMusica; 
+        }
     }
 }

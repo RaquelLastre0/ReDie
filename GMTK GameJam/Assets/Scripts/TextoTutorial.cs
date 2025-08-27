@@ -12,7 +12,7 @@ public class TextoTutorial : MonoBehaviour
     public TextMeshProUGUI textoNivel;
     int activado;
     public bool tutorial;
-    public GameObject selector;
+    public GameObject menuOpciones, sonidos, selector, botonMenu;
 
     // Start is called before the first frame update
     void Start()
@@ -35,7 +35,7 @@ public class TextoTutorial : MonoBehaviour
                 texto.gameObject.SetActive(false);
             }
         }
-        if (selector.activeSelf)
+        if (menuOpciones.activeSelf)
         {
             Time.timeScale = 0f;
         }
@@ -45,9 +45,49 @@ public class TextoTutorial : MonoBehaviour
         }
     }
 
+    public void abrirOpciones()
+    {
+        botonMenu.SetActive(false);
+        menuOpciones.SetActive(true);
+        EventSystem.current.SetSelectedGameObject(null);
+    }
+
+    public void cerrarOpciones()
+    {
+        botonMenu.SetActive(true);
+        menuOpciones.SetActive(false);
+    }
+
+    public void abrirSonidos()
+    {
+        sonidos.SetActive(true);
+        menuOpciones.SetActive(false);
+        EventSystem.current.SetSelectedGameObject(null);
+    }
+
+    public void cerrarSonidos()
+    {
+        sonidos.SetActive(false);
+        menuOpciones.SetActive(true);
+        EventSystem.current.SetSelectedGameObject(null);
+    }
+
     public void abrirSelector()
     {
         selector.SetActive(true);
+        menuOpciones.SetActive(false);
         EventSystem.current.SetSelectedGameObject(null);
+    }
+
+    public void cerrarSelector()
+    {
+        selector.SetActive(false);
+        menuOpciones.SetActive(true);
+        EventSystem.current.SetSelectedGameObject(null);
+    }
+
+    public void Salir()
+    {
+        SceneManager.LoadScene(0);
     }
 }
