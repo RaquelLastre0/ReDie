@@ -13,10 +13,25 @@ public class TextoTutorial : MonoBehaviour
     int activado;
     public bool tutorial;
     public GameObject menuOpciones, sonidos, selector, botonMenu;
+    public AudioSource audioSource;
+    public AudioClip audioClip;
 
     // Start is called before the first frame update
     void Start()
     {
+        GameObject audioObject = GameObject.FindGameObjectWithTag("AudioSource");
+        if (audioObject != null)
+        {
+            audioSource = audioObject.GetComponent<AudioSource>();
+            if (audioSource == null)
+            {
+                Debug.LogWarning("No se encontró AudioSource en el objeto con tag AudioSourceTag");
+            }
+        }
+        else
+        {
+            Debug.LogWarning("No se encontró ningún objeto con tag AudioSourceTag");
+        }
         textoNivel.text= "" + (SceneManager.GetActiveScene().buildIndex) + "/" + (SceneManager.sceneCountInBuildSettings - 2);
     }
 
@@ -35,13 +50,31 @@ public class TextoTutorial : MonoBehaviour
                 texto.gameObject.SetActive(false);
             }
         }
-        if (menuOpciones.activeSelf)
+        if (menuOpciones.activeSelf || sonidos.activeSelf || selector.activeSelf)
         {
             Time.timeScale = 0f;
         }
         else
         {
             Time.timeScale = 1f;
+        }
+
+        if ( Input.GetKeyDown(KeyCode.Escape)){
+            if (!menuOpciones.activeSelf )
+            {
+                if (sonidos.activeSelf)
+                {
+                    cerrarSonidos();
+                }else if (selector.activeSelf)
+                {
+                    cerrarSelector();
+                }
+                abrirOpciones();
+            }
+            else if(menuOpciones.activeSelf)
+            {
+                cerrarOpciones();
+            }
         }
     }
 

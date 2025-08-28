@@ -12,34 +12,48 @@ public class MenuManager : MonoBehaviour
     [SerializeField] private GameObject opciones;
     [SerializeField] private GameObject creditos;
 
-    public GameObject imagen, imegensSinLetras, elegirNivel, sliderVolumen, botonSelector, volumenes;
+    public GameObject imagen, imegenSinLetras, elegirNivel, sonidos, botonSelector, volumenes;
 
     private void Update()
     {
         if (elegirNivel.gameObject.activeSelf)
         {
+            imagen.SetActive(false);
+            imegenSinLetras.SetActive(true);
             botonSelector.SetActive(false);
             menuPrincipal.SetActive(false);
-            sliderVolumen.SetActive(false);
+            sonidos.SetActive(false);
+            if (Input.GetKeyDown(KeyCode.Escape))
+            {
+                elegirNivel.SetActive(false);
+            }
         }
         else if(volumenes.gameObject.activeSelf)
         {
+            imagen.SetActive(false);
+            imegenSinLetras.SetActive(true);
             botonSelector.SetActive(true);
             menuPrincipal.SetActive(true);
-            sliderVolumen.SetActive(true);
+            sonidos.SetActive(true);
+            if (Input.GetKeyDown(KeyCode.Escape))
+            { 
+                volumenes.SetActive(false);
+            }
         }
         else
         {
+            imagen.SetActive(true);
+            imegenSinLetras.SetActive(false);
             botonSelector.SetActive(true);
             menuPrincipal.SetActive(true);
-            sliderVolumen.SetActive(true);
+            sonidos.SetActive(true);
         }
 
         if (volumenes.gameObject.activeSelf)
         {
             botonSelector.SetActive(false);
             menuPrincipal.SetActive(false);
-            sliderVolumen.SetActive(false);
+            sonidos.SetActive(false);
         }
     }
     //Cargar Juego

@@ -9,7 +9,7 @@ public class NivelesCompletados : MonoBehaviour
 {
     public int contador = 1;
     public static NivelesCompletados instance;
-    public float volumenMusica;
+    public float volumenMusica, volumenSonidos;
 
     //public Slider slider;
 
