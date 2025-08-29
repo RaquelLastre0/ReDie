@@ -9,7 +9,7 @@ public class Player : MonoBehaviour
     [SerializeField] private Collider2D col; // Agrega el collider
     public float speed = 5f;
     public float jumpForce = 10f;
-    [SerializeField] private bool isJumping;
+    public bool isJumping;
     [SerializeField] public bool puedeMoverse = true;
     [SerializeField] private PhysicsMaterial2D noFrictionMaterial;   // Fricción 0
     [SerializeField] private PhysicsMaterial2D normalMaterial;       // Fricción normal

@@ -40,6 +40,7 @@ public class Precipicio : MonoBehaviour
         {
             audioSource.PlayOneShot(clip, 0.7f);
             player.transform.position = posicionRespawn.transform.position;
+            player.GetComponent<Player>().isJumping = false;
         }
     }
 }
